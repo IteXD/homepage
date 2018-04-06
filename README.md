@@ -1,10 +1,10 @@
 ## Homepage
 ![enter image description here](https://github.com/IteXD/homepage/blob/master/screenshot.PNG?raw=true)
-This is just a simple homepage that you can set on your browser it's very simple.
+This is just a very simple homepage that you can set on your browser.
 
 **Features**
 
- - Clock
+ - Time
  - DuckDuckGo search bar
  - Weather
 
