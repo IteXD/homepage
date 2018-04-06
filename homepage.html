@@ -1,0 +1,125 @@
+<html>
+
+<head>
+    <title>Homepage</title>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Rajdhani" rel="stylesheet">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+    <style>
+        body {
+            color: white;
+            font-family: 'Raleway', sans-serif;
+            background: url(https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-630793.jpg) no-repeat center center fixed;        /* You can change your bg here */
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+
+        #clockbox {
+            padding-top: 0px;
+            font-family: 'Rajdhani', sans-serif!important;
+            position: absolute;
+            font-size: 70px;
+        }
+
+        .top {
+            padding-top: 50px;
+            text-align: center;
+        }
+
+        form {
+            padding-top: 15px;
+            text-align: center;
+        }
+
+        input {
+            padding: 15px;
+            margin-top: 8px;
+            font-size: 17px;
+            border: none;
+        }
+
+        #searchbutton {
+            visibility: hidden;
+        }
+
+        #weather {
+            float: right;
+        }
+
+        #outputCelcius {
+            font-size: 40px;
+            margin-bottom: 0px;
+            margin-top: 10px;
+        }
+
+        #main {
+        }
+
+    </style>
+</head>
+
+<body>
+    <script>
+        var weatherapi = 'http://api.openweathermap.org/data/2.5/weather?q=Chisinau&appid=29b112c2e5fcf21a0af82b395f355219'; //CHANGE this with your api and your city
+        $.getJSON(weatherapi, function(jsonapi) {
+
+            })
+            .done(function(jsonapi) {
+                var weathernumber = jsonapi.main.temp;
+                console.log(weathernumber);
+
+                function temperatureConverter(weathernumber) {
+                    valNum = parseFloat(weathernumber);
+                    var weatherresult = weathernumber - 273.15;
+                    document.getElementById("outputCelcius").innerHTML = weatherresult.toFixed(0) + "°C"; //You nee to change this if you want to change from Celsius
+                };
+                var mainw = jsonapi.weather[0].main;
+
+                function weatherMain(mainw) {
+                    valNum = parseFloat(mainw);
+                    document.getElementById("main").innerHTML = mainw;
+                };
+                weatherMain(mainw);
+                temperatureConverter(weathernumber);
+            });
+        //method="get" id="search" action="http://duckduckgo.com/"
+
+    </script>
+    <script type="text/javascript">
+        function GetClock() {
+            var d = new Date();
+            var nhour = d.getHours(),
+                nmin = d.getMinutes(),
+                nsec = d.getSeconds();
+            if (nmin <= 9) nmin = "0" + nmin
+            if (nsec <= 9) nsec = "0" + nsec;
+
+            document.getElementById('clockbox').innerHTML = "" + nhour + ":" + nmin + ":" + nsec + "";
+        }
+
+        window.onload = function() {
+            GetClock();
+            setInterval(GetClock, 1000);
+        }
+
+    </script>
+    <div id="clockbox"></div>
+    <div id="weather">
+        <p id="outputCelcius">
+            </h1>
+            <p id="main"></p>
+    </div>
+
+    <!--Duckduckgo form-->
+    <div class="search-container">
+        <form class="form-inline" method="get" id="search" action="http://duckduckgo.com/">
+            <input class="form-control" type="text" name="q" maxlength="255" placeholder="Search&hellip;">
+            <button id="searchbutton" type="submit" value="DuckDuckGo Search" type="submit"></button>
+        </form>
+    </div>
+</body>
+
+</html>
